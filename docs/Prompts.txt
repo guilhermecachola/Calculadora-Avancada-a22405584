@@ -1,0 +1,36 @@
+-quais sao as operacoes em que o LLM será mais eficiente?
+Dito pelo ChatGPT:
+
+O LLM não é eficiente a fazer cálculos, mas é extremamente eficiente em tarefas que envolvem linguagem, 
+interpretação, explicação e raciocínio qualitativo.
+
+-a eficiencia de interpretaçao do LLM vai depender do quê?
+Dito pelo ChatGPT:
+
+A eficiência da interpretação do LLM não é fixa — ela depende de vários fatores técnicos, linguísticos e até da forma como a vossa aplicação comunica com ele.
+
+Aqui estão os fatores mais importantes:
+
+✅ 1. Clareza da entrada (o input do utilizador)
+
+Quanto mais clara e estruturada for a expressão, melhor o LLM interpreta.
+
+Exemplos:
+
+✔ Bom input:
+2x + 5 = 7
+{x + y = 10, x - y = 2}
+
+✘ Maus inputs:
+a cena é 2x +5 =7
+resolve isto pls
+
+Se o input for confuso, o LLM pode interpretar mal.
+
+
+seria correto fazer uma classe para cada tipo de operação
+Dito pelo ChatGPT:
+
+Sim — é correto e até recomendado criar uma classe para cada tipo de operação, dependendo do objetivo pedagógico do projeto e da arquitetura desejada.
+
+Mas também há vantagens e desvantagens, por isso deixo a análise completa para que saibas justificar a decisão no relatório.
