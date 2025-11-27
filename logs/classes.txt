@@ -1,0 +1,6 @@
+seria correto fazer uma classe para cada tipo de operação
+Dito pelo ChatGPT:
+
+Sim — é correto e até recomendado criar uma classe para cada tipo de operação, dependendo do objetivo pedagógico do projeto e da arquitetura desejada.
+
+Mas também há vantagens e desvantagens, por isso deixo a análise completa para que saibas justificar a decisão no relatório.

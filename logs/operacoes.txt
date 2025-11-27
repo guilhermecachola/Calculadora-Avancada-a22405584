@@ -1,0 +1,5 @@
+-quais sao as operacoes em que o LLM será mais eficiente?
+Dito pelo ChatGPT:
+
+O LLM não é eficiente a fazer cálculos, mas é extremamente eficiente em tarefas que envolvem linguagem, 
+interpretação, explicação e raciocínio qualitativo.
