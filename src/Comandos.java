@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Comandos {
 
     Calculadora calc = new Calculadora();
     LLMCalculadora llm;
-
+    ArrayList<String> historico = new ArrayList<>();
     public Comandos(LLMCalculadora llm) {
         this.llm = llm;
     }
@@ -17,6 +19,7 @@ public class Comandos {
             System.out.println("5) Derivar expressão (LLM)");
             System.out.println("6) Simplificar expressão (LLM)");
             System.out.println("7) Resolver equação (LLM)");
+            System.out.println("8) Verificar histórico de operações");
             System.out.println("0) Sair");
 
             int option = Utils.readCharFromKeyboard();
@@ -41,7 +44,7 @@ public class Comandos {
 
         System.out.println("Introduza o segundo número:");
         double b = Double.parseDouble(Utils.readLine());
-
+        adicionaHistorico(a , b , " + " , calc.ad(a, b));
         System.out.println("Resultado: " + calc.ad(a, b));
     }
 
@@ -51,7 +54,7 @@ public class Comandos {
 
         System.out.println("Introduza o segundo número:");
         double b = Double.parseDouble(Utils.readLine());
-
+        adicionaHistorico(a , b , " - " , calc.sub(a, b));
         System.out.println("Resultado: " + calc.sub(a, b));
     }
 
@@ -61,7 +64,7 @@ public class Comandos {
 
         System.out.println("Introduza o segundo número:");
         double b = Double.parseDouble(Utils.readLine());
-
+        adicionaHistorico(a , b , " * " , calc.mul(a, b));
         System.out.println("Resultado: " + calc.mul(a, b));
     }
 
@@ -73,6 +76,7 @@ public class Comandos {
         double b = Double.parseDouble(Utils.readLine());
 
         try {
+            adicionaHistorico(a , b , " / " , calc.div(a, b));
             System.out.println("Resultado: " + calc.div(a, b));
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -104,6 +108,8 @@ public class Comandos {
         System.out.println("Solução: " + resposta);
     }
 
-
+    void adicionaHistorico(double a , double b , String simbolo , double resultado){
+        historico.add(a + simbolo + b + " = " + resultado);
+    }
 
 }
