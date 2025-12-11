@@ -27,7 +27,6 @@ public class LLMCalculadora {
 
         String prompt = "Simplifica a expressão: " + expression +
                 ". Responde apenas em JSON no formato {\"operation\":\"simplify\",\"result\":\"...\"}.";
-
         String jsonResponse = engine.sendPrompt(prompt);
         return JSONUtils.getJsonString(jsonResponse, "text");
     }
