@@ -1,6 +1,6 @@
 public class Main {
 
-    static String apiKey = "A-CHAVE-DA-AULA";
+    static String apiKey = "ALTERAR";
     static String url = "https://modelos.ai.ulusofona.pt/v1/completions";
     static String model = "gpt-4-turbo";
     static boolean useHack = false;
