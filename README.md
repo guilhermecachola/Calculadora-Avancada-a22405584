@@ -1,7 +1,7 @@
 | Campo | Conteúdo |
 |-------|----------|
 | **Tema escolhido** | Calculadora Avançada |
-| **Elementos do grupo** | (preencher com nomes + nº aluno) |
+| **Elementos do grupo** | Guilherme Carvalho a22405584 |
 | **Descrição geral do projeto** | Uma aplicação de consola que funciona como uma calculadora avançada, capaz de realizar operações matemáticas base (soma, subtração, multiplicação, divisão) e operações avançadas, como derivadas simbólicas simples, simplificação de expressões e resolução de equações lineares. Parte da lógica “avançada” será delegada a um LLM. |
 | **Funcionalidade Java (não-LLM)** | Implementação das operações matemáticas determinísticas (soma, subtração, multiplicação, divisão), parsing básico da expressão, gestão do histórico, validação de inputs, interface de consola, e testes JUnit para estas funcionalidades sem LLM. |
 | **Funcionalidade delegada ao LLM** | Processamento e resolução de expressões matemáticas avançadas difíceis de implementar em Java: derivação simbólica, simplificação de expressões, explicação passo-a-passo e resolução de equações simples. O LLM devolve sempre resultados em JSON estrito. |
