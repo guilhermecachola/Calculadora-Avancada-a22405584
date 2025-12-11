@@ -1,95 +1,12 @@
-# model.md
+## UML
+<img width="1247" height="1163" alt="UML" src="https://github.com/user-attachments/assets/d6b15ee7-671a-4ead-806e-f46146ffe5fc" />
 
-## UML – Calculadora Avançada G12
-
-```
-+-----------------------------------+
-|           CalculatorApp           |
-+-----------------------------------+
-| - parser: Parser                  |
-| - add: Addition                   |
-| - sub: Subtraction                |
-| - mul: Multiplication             |
-| - div: Division                   |
-| - rootCalc: RootCalculator        |
-| - powerCalc: PowerCalculator      |
-| - eqSolver: EquationSolverLLM     |
-| - sysSolver: SystemSolverLLM      |
-+-----------------------------------+
-| + processInput(input: String): Result |
-+-----------------------------------+
-
-
-+---------------------+        +----------------------+
-|      Parser         |        |      Result          |
-+---------------------+        +----------------------+
-| + parse(): Command  |        | - value              |
-|                     |        | - steps (optional)   |
-+---------------------+        +----------------------+
-
-            1
-CalculatorApp <>--------> Parser
-
-
-==========================================================
-============  CLASSES DE OPERAÇÕES BÁSICAS  ==============
-==========================================================
-
-+---------------------+
-|      Addition       |
-+---------------------+
-| + compute(a, b): num|
-+---------------------+
-
-+---------------------+
-|    Subtraction      |
-+---------------------+
-| + compute(a, b): num|
-+---------------------+
-
-+---------------------+
-|   Multiplication    |
-+---------------------+
-| + compute(a, b): num|
-+---------------------+
-
-+---------------------+
-|      Division       |
-+---------------------+
-| + compute(a, b): num|
-+---------------------+
-
-
-==========================================================
-============  CLASSES DE OPERAÇÕES AVANÇADAS  ============
-==========================================================
-
-+---------------------------+
-|      RootCalculator       |
-+---------------------------+
-| + nthRoot(base, n): num   |
-+---------------------------+
-
-+---------------------------+
-|      PowerCalculator      |
-+---------------------------+
-| + power(base, exp): num   |
-+---------------------------+
-
-
-==========================================================
-===================  CLASSES DO LLM  =====================
-==========================================================
-
-+--------------------------------+
-|     EquationSolverLLM          |
-+--------------------------------+
-| + solveEquation(eq: String): Result |
-+--------------------------------+
-
-+--------------------------------+
-|     SystemSolverLLM            |
-+--------------------------------+
-| + solveSystem(sys: String): Result |
-+--------------------------------+
-```
+## Explicação do modelo
+- **Main**: Ponto de entrada; cria `LLMInteractionEngine`, `LLMCalculadora` e `Comandos`, faz arrancar tudo basicamente.
+- **Comandos**: Interface de linha de comando. Gere o menu, o histórico que é apenas um arraylist, animações (neve, trenó, árvore), e invoca `Calculadora` e `LLMCalculadora`.
+- **Calculadora**: Implementa operações determinísticas: `add`, `sub`, `mul`, `div`. Testes JUnit cobrem estes métodos.
+- **LLMCalculadora**: Adapter que contém prompts e transforma pedidos em chamadas ao `LLMInteractionEngine`. Fornece: derivada, simplificação, resolução de equações.
+- **LLMInteractionEngine**: Camada de comunicação HTTP com o servidor LLM (já fornecido).
+- **JSONUtils**: Utilitários para parsing simples de JSON retornado pelo LLM.
+- **Utils**: Utilitários de I/O para a CLI (`readCharFromKeyboard`, `readLine`).
+- **historico**: Lista de `String` mantida dentro de `Comandos` .
