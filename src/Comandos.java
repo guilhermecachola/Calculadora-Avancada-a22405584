@@ -49,7 +49,7 @@ public class Comandos {
                 System.out.println("8)" + brilho + "Simplificar expressão (LLM)" + f6);
                 System.out.println("9)" + presente + "Resolver equação (LLM)" + f7);
                 System.out.println("10)" + maeNatal + "Verificar histórico de operações" + f8);
-                System.out.println("11)" + brilho + "Escrever texto e calcular (LLM)");
+                System.out.println("11)" + brilho + "Escrever operação por extenso e calcular (LLM)");
                 System.out.println("12)" + urso + "Modo NATAL: ON");
                 System.out.println("0)" + boneco + "Sair" + f0);
                 /*No modo natal os resultados aparecem a grande e antes de aparecerem
@@ -67,7 +67,7 @@ public class Comandos {
                 System.out.println("8) Simplificar expressão (LLM)");
                 System.out.println("9) Resolver equação (LLM)");
                 System.out.println("10) Verificar histórico de operações");
-                System.out.println("11) Escrever texto e calcular (LLM)");
+                System.out.println("11) Escrever operação por extenso e calcular (LLM)");
                 System.out.println("12)Modo NATAL: OFF");
                 System.out.println("0) Sair");
             }
@@ -334,3 +334,4 @@ public class Comandos {
 
 
 }
+
