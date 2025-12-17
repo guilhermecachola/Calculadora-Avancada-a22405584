@@ -262,7 +262,16 @@ public class CalculadoraSwing {
                 progress.setVisible(false);
                 try {
                     String res = get();
-                    output.setText(res);
+                    if (modoNatal) {
+                        try {
+                            String musica = llm.askForNatalSongLine(res);
+                            output.setText("🎄 RESULTADO 🎄\n\n" + musica + "\n\n" + res);
+                        } catch (Exception ex) {
+                            output.setText("🎄 RESULTADO 🎄\n\n" + res);
+                        }
+                    } else {
+                        output.setText(res);
+                    }
                     historicoModel.addElement(
                             operacao + ": " + expr + " → " + res
                     );
