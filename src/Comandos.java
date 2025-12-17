@@ -37,7 +37,7 @@ public class Comandos {
     int numero1;
     int numero2;
     String texto;
-    Object result;
+
 
     /**
      * Construtor da classe de comandos.
@@ -102,70 +102,86 @@ public class Comandos {
                 System.out.println("12)Modo NATAL: OFF");
                 System.out.println("0) Sair");
             }
-            int option = Utils.readCharFromKeyboard();
+            String option = Utils.readCharFromKeyboard();
+            while (!verificaO(option)){
+                System.out.println("Insira uma opção válida");
+                option = Utils.readCharFromKeyboard();
+            }
 
             switch (option) {
-                case 1:
+                case "1":
                     if (natal) animacaoNeve();
                     handleAdd();
                     break;
 
-                case 2:
+                case "2":
                     if (natal) animacaoNeve();
                     handleSub();
                     break;
 
-                case 3:
+                case "3":
                     if (natal) animacaoNeve();
                     handleMul();
                     break;
 
-                case 4:
+                case "4":
                     if (natal) animacaoNeve();
                     handleDiv();
                     break;
 
-                case 5:
+                case "5":
                     if (natal) animacaoNeve();
                     handlePot();
                     break;
 
-                case 6:
+                case "6":
                     if (natal) animacaoNeve();
                     handleRaiz();
                     break;
 
-                case 7:
+                case "7":
                     handleDerivative();
                     break;
 
-                case 8:
+                case "8":
                     handleSimplification();
                     break;
 
-                case 9:
+                case "9":
                     handleEquation();
                     break;
 
-                case 10:
+                case "10":
                     historicoString();
                     break;
 
-                case 11:
+                case "11":
                     handleTextoLivre();
                     break;
 
-                case 12:
+                case "12":
                     natal = !natal;
                     break;
 
-                case 0:
+                case "0":
                     return;
 
                 default:
                     System.out.println("Opção inválida.");
             }
 
+        }
+    }
+
+    boolean verificaO(String opcao) {
+        if (opcao == null) {
+            return false;
+        }
+        try {
+            int valor = Integer.parseInt(opcao.trim()); // .trim() remove espaços extra
+            return valor >= 0 && valor <= 12;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
