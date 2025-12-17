@@ -16,13 +16,13 @@ public class Utils {
      *
      * @return Valor inteiro lido ou -1 em caso de erro de conversão
      */
-    static int readCharFromKeyboard() {
+    static String readCharFromKeyboard() {
         Scanner sc = new Scanner(System.in);
         System.out.print("> ");
         try {
-            return Integer.parseInt(sc.nextLine());
+            return (sc.nextLine());
         } catch (NumberFormatException e) {
-            return -1;
+            return "não deu";
         }
     }
 
