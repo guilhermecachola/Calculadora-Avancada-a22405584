@@ -1,18 +1,14 @@
 public class Main {
-
-    static String apiKey = "A-CHAVE-DA-AULA";
+    static String apiKey = "sk-rUw_10kdjpBaPh5BbEr7DQ";
     static String url = "https://modelos.ai.ulusofona.pt/v1/completions";
     static String model = "gpt-4-turbo";
-    static boolean useHack = false;
+    static boolean useHack = true;
+    public static void main(String[] args) {
 
-    public static void main(String[] args) throws Exception {
+        // Aqui assumes que já tens o teu engine configurado
+        LLMInteractionEngine engine = new LLMInteractionEngine(url, apiKey, model, useHack);
+        LLMCalculadora llm = new LLMCalculadora(engine);
 
-        LLMInteractionEngine engine =
-                new LLMInteractionEngine(url, apiKey, model, useHack);
-
-        LLMCalculadora llmCalc = new LLMCalculadora(engine);
-
-        Comandos command = new Comandos(llmCalc);
-        command.run();
+        new CalculadoraSwing(llm);
     }
 }
