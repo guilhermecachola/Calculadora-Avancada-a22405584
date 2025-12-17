@@ -2,131 +2,105 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Classe responsável por fornecer operações matemáticas através de um
- * motor de interação com um LLM.
- * <p>
- * Esta classe constrói prompts específicos para diferentes tipos de
- * operações matemáticas (derivação, simplificação, resolução de equações,
- * cálculos gerais e geração de texto criativo) e delega o envio desses
- * prompts ao {@link LLMInteractionEngine}.
- */
 public class LLMCalculadora {
 
-    /** Motor responsável pela comunicação com o LLM */
-    LLMInteractionEngine engine;
+    private final LLMInteractionEngine engine;
 
-    /**
-     * Construtor da calculadora baseada em LLM.
-     *
-     * @param engine Instância do motor de interação com o LLM
-     */
     public LLMCalculadora(LLMInteractionEngine engine) {
         this.engine = engine;
     }
 
-    /**
-     * Solicita ao LLM a derivada de uma expressão matemática.
-     *
-     * @param expression Expressão matemática a derivar
-     * @return Resultado da derivação extraído do JSON de resposta
-     * @throws IOException Erro de I/O durante a comunicação
-     * @throws NoSuchAlgorithmException Se o algoritmo de segurança não existir
-     * @throws InterruptedException Se a execução for interrompida
-     * @throws KeyManagementException Se ocorrer erro na gestão de chaves
-     */
     public String askForDerivative(String expression)
             throws IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
 
-        String prompt = "Deriva a seguinte expressão matemática: " + expression +
-                ". Responde apenas em JSON no formato {\"operation\":\"derive\",\"result\":\"...\"}.";
+        String prompt =
+                "Deriva a seguinte expressão matemática:\n\n" +
+                        expression + "\n\n" +
+                        "Responde APENAS com a derivada final.\n" +
+                        "Não expliques nada.\n" +
+                        "Não uses JSON.\n" +
+                        "Não escrevas mais nenhuma palavra.";
 
-        String jsonResponse = engine.sendPrompt(prompt);
-        return JSONUtils.getJsonString(jsonResponse, "text");
+        String response = engine.sendPrompt(prompt);
+
+        // extrai apenas o texto gerado pelo modelo
+        String result = JSONUtils.getJsonString(response, "text");
+
+        return result == null ? response.trim() : result.trim();
     }
 
-    /**
-     * Solicita ao LLM a simplificação de uma expressão matemática.
-     *
-     * @param expression Expressão matemática a simplificar
-     * @return Resultado da simplificação extraído do JSON de resposta
-     * @throws IOException Erro de I/O durante a comunicação
-     * @throws NoSuchAlgorithmException Se o algoritmo de segurança não existir
-     * @throws InterruptedException Se a execução for interrompida
-     * @throws KeyManagementException Se ocorrer erro na gestão de chaves
-     */
+
     public String askForSimplification(String expression)
             throws IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
 
-        String prompt = "Simplifica a expressão: " + expression +
-                ". Responde apenas em JSON no formato {\"operation\":\"simplify\",\"result\":\"...\"}.";
-        String jsonResponse = engine.sendPrompt(prompt);
-        return JSONUtils.getJsonString(jsonResponse, "text");
+        String prompt =
+                "Simplifica a seguinte expressão matemática:\n\n" +
+                        expression + "\n\n" +
+                        "Responde APENAS com a expressão simplificada.\n" +
+                        "Não expliques nada.\n" +
+                        "Não uses JSON.\n" +
+                        "Não escrevas mais nenhuma palavra.";
+
+        String response = engine.sendPrompt(prompt);
+
+        String result = JSONUtils.getJsonString(response, "text");
+
+        return result == null ? response.trim() : result.trim();
     }
 
-    /**
-     * Solicita ao LLM a resolução de uma equação matemática.
-     *
-     * @param equation Equação a resolver
-     * @return Solução da equação extraída do JSON de resposta
-     * @throws IOException Erro de I/O durante a comunicação
-     * @throws NoSuchAlgorithmException Se o algoritmo de segurança não existir
-     * @throws InterruptedException Se a execução for interrompida
-     * @throws KeyManagementException Se ocorrer erro na gestão de chaves
-     */
+
     public String askForEquationSolution(String equation)
             throws IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
 
-        String prompt = "Resolve a equação: " + equation +
-                ". Devolve apenas JSON do tipo {\"operation\":\"solve\",\"result\":\"...\"}.";
+        String prompt =
+                "Resolve a seguinte equação matemática:\n\n" +
+                        equation + "\n\n" +
+                        "Responde APENAS com o resultado final.\n" +
+                        "Não expliques nada.\n" +
+                        "Não uses JSON.";
 
-        String jsonResponse = engine.sendPrompt(prompt);
-        return JSONUtils.getJsonString(jsonResponse, "text");
+        String response = engine.sendPrompt(prompt);
+
+        // extrai o campo "text" da resposta
+        return JSONUtils.getJsonString(response, "text");
     }
 
-    /**
-     * Solicita ao LLM a interpretação e cálculo de um problema matemático
-     * descrito em linguagem natural.
-     *
-     * @param text Texto que descreve o problema matemático
-     * @return Resultado final do cálculo extraído do JSON de resposta
-     * @throws IOException Erro de I/O durante a comunicação
-     * @throws NoSuchAlgorithmException Se o algoritmo de segurança não existir
-     * @throws InterruptedException Se a execução for interrompida
-     * @throws KeyManagementException Se ocorrer erro na gestão de chaves
-     */
-    public String askForCalculation(String text)
+
+
+    public String askForCalculation(String textInput)
             throws IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
 
         String prompt =
-                "Interpreta o texto seguinte como um problema matemático e devolve apenas o resultado final. " +
-                        "Texto: \"" + text + "\". " +
-                        "Responde apenas em JSON no formato {\"operation\":\"calculate\",\"result\":\"...\"}.";
+                "Interpreta o texto seguinte como um problema matemático e calcula o resultado final:\n\n" +
+                        "\"" + textInput + "\"\n\n" +
+                        "Responde APENAS com o resultado final.\n" +
+                        "Não expliques nada.\n" +
+                        "Não uses JSON.\n" +
+                        "Não escrevas mais nenhuma palavra.";
 
-        String jsonResponse = engine.sendPrompt(prompt);
-        return JSONUtils.getJsonString(jsonResponse, "text");
+        String response = engine.sendPrompt(prompt);
+
+        String result = JSONUtils.getJsonString(response, "text");
+
+        return result == null ? response.trim() : result.trim();
     }
 
-    /**
-     * Solicita ao LLM a geração de uma única linha curta de uma música natalícia
-     * divertida que inclua explicitamente um determinado valor.
-     *
-     * @param resultado Valor que deve ser incluído na frase gerada
-     * @return Linha de música natalícia gerada pelo LLM
-     * @throws IOException Erro de I/O durante a comunicação
-     * @throws NoSuchAlgorithmException Se o algoritmo de segurança não existir
-     * @throws InterruptedException Se a execução for interrompida
-     * @throws KeyManagementException Se ocorrer erro na gestão de chaves
-     */
+
     public String askForNatalSongLine(Object resultado)
             throws IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
 
         String prompt =
-                "Gera UMA única linha curta de música natalícia divertida. " +
-                        "A linha DEVE incluir o valor \"" + resultado + "\". " +
-                        "Não expliques nada. Não uses JSON. Apenas a frase.";
+                "Gera UMA única linha curta de música natalícia divertida.\n\n" +
+                        "Regras:\n" +
+                        "- A linha DEVE incluir exatamente o valor \"" + resultado + "\"\n" +
+                        "- Não expliques nada\n" +
+                        "- Não uses JSON\n" +
+                        "- Responde apenas com a frase";
 
-        return engine.sendPrompt(prompt);
+        String response = engine.sendPrompt(prompt);
+
+        String text = JSONUtils.getJsonString(response, "text");
+        return text == null ? response.trim() : text.trim();
     }
 
 }
