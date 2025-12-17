@@ -1,5 +1,6 @@
 ## UML
-<img width="1153" height="906" alt="UML" src="https://github.com/user-attachments/assets/f692326e-96ae-47c7-a89b-9a3f9b1f5b32" />
+<img width="1297" height="859" alt="image" src="https://github.com/user-attachments/assets/e3876f23-9819-4ec3-9e19-0cf0ed970ba2" />
+ 
 
 ## Explicação do modelo
 - **Main**: Ponto de entrada; cria `LLMInteractionEngine`, `LLMCalculadora` e `Comandos`, faz arrancar tudo basicamente.
