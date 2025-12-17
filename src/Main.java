@@ -5,10 +5,11 @@ public class Main {
     static boolean useHack = true;
     public static void main(String[] args) {
 
-        // Aqui assumes que já tens o teu engine configurado
+        
         LLMInteractionEngine engine = new LLMInteractionEngine(url, apiKey, model, useHack);
         LLMCalculadora llm = new LLMCalculadora(engine);
 
         new CalculadoraSwing(llm);
     }
 }
+
