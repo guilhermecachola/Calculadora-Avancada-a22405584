@@ -63,7 +63,6 @@ public class Calculadora {
     public static double pot(double a,  double b){
         return Math.pow(a , b);
     }
-
     /**
      * Calcula a raiz de um valor.
      *
